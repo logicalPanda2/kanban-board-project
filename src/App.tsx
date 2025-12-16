@@ -88,6 +88,10 @@ export default function App() {
 
     const closeModal = (): void => {
         toggleModal();
+        setTitleValue("");
+        setDetailsValue("");
+        setTagValue("none");
+        setEditedId("");
         setError(false);
     }
 
@@ -113,6 +117,7 @@ export default function App() {
                             key={todo.id}
                         >
                             <p>{todo.title}</p>
+                            <p>{todo.id}</p>
                             <button onClick={() => {viewDetails(todo)}}>View task details</button>
                             <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
                         </div>
