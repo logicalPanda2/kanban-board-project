@@ -31,7 +31,7 @@ interface ModalProps {
     onDetailsChange: React.Dispatch<React.SetStateAction<string>>,
     tagValue: Tag,
     onTagChange: React.Dispatch<React.SetStateAction<Tag>>,
-    onEdit: (title: string, details: string, tag: Tag) => boolean,
+    onEdit: (title: string, details: string, tag: Tag, targetId: string) => boolean,
     onCreate: (title: string, details: string, tag: Tag) => boolean,
     onClose: () => void,
 }
