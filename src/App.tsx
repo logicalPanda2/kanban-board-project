@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Column from "./components/Column";
 
 type Status = "todo" | "wip" | "completed";
 type Tag = "none" | "low" | "mid" | "high";
@@ -115,58 +116,18 @@ export default function App() {
 
 	return (
         <>
-            <button 
-                onClick={toggleModal}
-            >
-                Create new task
-            </button>
-            <div className="flex flex-row">
-                <div className="w-1/3">
-                    <p>To do</p>
-                    {todos && todos.filter(todo => todo.status === "todo").length > 0
-                        ? todos.filter(todo => todo.status === "todo").map((todo) => (
-                            <div
-                                key={todo.id}
-                            >
-                                <p>{todo.title}</p>
-                                <button onClick={() => {viewDetails(todo)}}>View task details</button>
-                                <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
-                            </div>
-                        ))
-                        : <p>No current tasks</p>
-                    }
+            <main className="flex flex-col h-screen">
+                <button 
+                    onClick={toggleModal}
+                >
+                    Create new task
+                </button>
+                <div className="flex flex-row grow">
+                    <Column title="To Do" todos={todos.filter(todo => todo.status === "todo")} onView={viewDetails} onDelete={deleteTodo}/>
+                    <Column title="In Progress" todos={todos.filter(todo => todo.status === "wip")} onView={viewDetails} onDelete={deleteTodo}/>
+                    <Column title="Completed" todos={todos.filter(todo => todo.status === "completed")} onView={viewDetails} onDelete={deleteTodo}/>
                 </div>
-                <div className="w-1/3">
-                    <p>In progress</p>
-                    {todos && todos.filter(todo => todo.status === "wip").length > 0
-                        ? todos.filter(todo => todo.status === "wip").map((todo) => (
-                            <div
-                                key={todo.id}
-                            >
-                                <p>{todo.title}</p>
-                                <button onClick={() => {viewDetails(todo)}}>View task details</button>
-                                <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
-                            </div>
-                        ))
-                        : <p>No current tasks</p>
-                    }
-                </div>
-                <div className="w-1/3"> 
-                    <p>Completed</p>
-                    {todos && todos.filter(todo => todo.status === "completed").length > 0
-                        ? todos.filter(todo => todo.status === "completed").map((todo) => (
-                            <div
-                                key={todo.id}
-                            >
-                                <p>{todo.title}</p>
-                                <button onClick={() => {viewDetails(todo)}}>View task details</button>
-                                <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
-                            </div>
-                        ))
-                        : <p>No current tasks</p>
-                    }
-                </div>
-            </div>
+            </main>
             {isModalOpen &&
                 <div
                     className="flex flex-col w-2xs"
