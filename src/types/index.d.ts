@@ -45,7 +45,3 @@ function isTag(value: string): value is Tag {
 }
 
 type Status = "todo" | "wip" | "completed";
-
-const ItemTypes = {
-    TODO: "TODO",
-}

@@ -1,4 +1,5 @@
 import { useDrag } from "react-dnd";
+import { ItemTypes } from "../types/ItemTypes";
 
 export default function TodoCard({todo, onTaskView, onTaskDelete}: TodoCardProps) {
     const [{ isDragging }, dragRef] = useDrag(() => ({
