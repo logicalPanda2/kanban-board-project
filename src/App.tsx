@@ -129,6 +129,7 @@ export default function App() {
                 <div
                     className="flex flex-col w-2xs"
                 >
+                    <p>{editedId ? "Edit a task": "Create a task"}</p>
                     <label 
                         htmlFor="titleField"
                     >
