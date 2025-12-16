@@ -1,11 +1,21 @@
 import { useState } from "react";
 
+type Status = "todo" | "wip" | "completed";
+type Tag = "none" | "low" | "mid" | "high";
+
 interface Todo {
     title: string,
     details: string,
-    status: string,
-    tag: string,
+    status: Status,
+    tag: Tag,
     id: string,
+}
+
+function isTag(value: string): value is Tag {
+    if(value === "none" || value === "low" || value === "mid" || value === "high") {
+        return true;
+    }
+    return false;
 }
 
 export default function App() {
@@ -15,10 +25,10 @@ export default function App() {
     const [editedId, setEditedId] = useState<string>("");
     const [titleValue, setTitleValue] = useState<string>("");
     const [detailsValue, setDetailsValue] = useState<string>("");
-    const [tagValue, setTagValue] = useState<string>("none");
+    const [tagValue, setTagValue] = useState<Tag>("none");
     const root = document.getElementById("root");
 
-    const createTodo = (title: string, details: string, tag: string): boolean => {
+    const createTodo = (title: string, details: string, tag: Tag): boolean => {
         if(!title) {
             return false;
         }
@@ -40,7 +50,7 @@ export default function App() {
         return true;
     }
 
-    const editTodo = (title: string, details: string, tag: string): boolean => {
+    const editTodo = (title: string, details: string, tag: Tag): boolean => {
         if(!title) {
             return false;
         }
@@ -117,7 +127,6 @@ export default function App() {
                             key={todo.id}
                         >
                             <p>{todo.title}</p>
-                            <p>{todo.id}</p>
                             <button onClick={() => {viewDetails(todo)}}>View task details</button>
                             <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
                         </div>
@@ -166,7 +175,7 @@ export default function App() {
                         id="tagField"
                         className="border border-solid border-black"
                         value={tagValue}
-                        onChange={(e) => {setTagValue(e.target.value)}}
+                        onChange={(e) => {isTag(e.target.value) ? setTagValue(e.target.value) : setTagValue("none")}}
                     >
                         <option value="none">None</option>
                         <option value="low">Low Priority</option>
