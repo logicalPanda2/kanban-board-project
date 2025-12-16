@@ -37,11 +37,4 @@ interface ModalProps {
 }
 
 type Tag = "none" | "low" | "mid" | "high";
-function isTag(value: string): value is Tag {
-    if(value === "none" || value === "low" || value === "mid" || value === "high") {
-        return true;
-    }
-    return false;
-}
-
 type Status = "todo" | "wip" | "completed";

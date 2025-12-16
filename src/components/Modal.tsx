@@ -1,3 +1,10 @@
+function isTag(value: string): value is Tag {
+    if(value === "none" || value === "low" || value === "mid" || value === "high") {
+        return true;
+    }
+    return false;
+}
+
 export default function Modal({
     editedId, 
     hasError,
