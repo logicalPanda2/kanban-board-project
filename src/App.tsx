@@ -9,7 +9,7 @@ interface Todo {
 }
 
 export default function App() {
-    const [todos, setTodos] = useState<Todo[] | null>(null);
+    const [todos, setTodos] = useState<Todo[]>([]);
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [hasError, setError] = useState<boolean>(false);
     const [titleValue, setTitleValue] = useState<string>("");
@@ -34,7 +34,7 @@ export default function App() {
         setDetailsValue("");
         setTagValue("none");
 
-        !todos ? setTodos([newTodo]) : setTodos((prev) => [...prev as any, newTodo]); // fix "as any" later.
+        todos.length === 0 ? setTodos([newTodo]) : setTodos((prev) => [...prev, newTodo]);
 
         return 0;
     }
