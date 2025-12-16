@@ -1,3 +1,3 @@
 export const ItemTypes = {
-    TODO: "TODO",
-}
+	TODO: "TODO",
+};

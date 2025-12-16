@@ -1,58 +1,68 @@
 import { useLocalStorage } from "./useLocalStorage";
 
 export function useTodos(localStorageKey: string) {
-    const [todos, setTodos] = useLocalStorage<Todo[]>(localStorageKey, []);
+	const [todos, setTodos] = useLocalStorage<Todo[]>(localStorageKey, []);
 
-    const createTodo = (title: string, details: string, tag: Tag): boolean => {
-        if(!title) return false;
+	const createTodo = (title: string, details: string, tag: Tag): boolean => {
+		if (!title) return false;
 
-        const newTodo: Todo = {
-            title: title,
-            details: details,
-            status: "todo",
-            tag: tag,
-            id: crypto.randomUUID(),
-        }
+		const newTodo: Todo = {
+			title: title,
+			details: details,
+			status: "todo",
+			tag: tag,
+			id: crypto.randomUUID(),
+		};
 
-        todos.length === 0 ? setTodos([newTodo]) : setTodos((prev) => [...prev, newTodo]);
+		todos.length === 0
+			? setTodos([newTodo])
+			: setTodos((prev) => [...prev, newTodo]);
 
-        return true;
-    }
+		return true;
+	};
 
-    const editTodo = (title: string, details: string, tag: Tag, targetId: string): boolean => {
-        if(!title) return false;
+	const editTodo = (
+		title: string,
+		details: string,
+		tag: Tag,
+		targetId: string,
+	): boolean => {
+		if (!title) return false;
 
-        const oldTodo = todos.find(todo => todo.id === targetId);
+		const oldTodo = todos.find((todo) => todo.id === targetId);
 
-        if(!oldTodo) return false;
+		if (!oldTodo) return false;
 
-        const newTodo = {
-            ...oldTodo,
-            title: title,
-            details: details,
-            tag: tag,
-        }
+		const newTodo = {
+			...oldTodo,
+			title: title,
+			details: details,
+			tag: tag,
+		};
 
-        const newTodos = [...todos.filter(todo => todo.id !== targetId), newTodo];
-        
-        setTodos(newTodos);
+		const newTodos = [
+			...todos.filter((todo) => todo.id !== targetId),
+			newTodo,
+		];
 
-        return true;
-    }
+		setTodos(newTodos);
 
-    const deleteTodo = (id: string): void => {
-        if(!todos) return;
+		return true;
+	};
 
-        const newTodos = todos.filter(todo => todo.id !== id);
+	const deleteTodo = (id: string): void => {
+		if (!todos) return;
 
-        setTodos(newTodos);
-    }
+		const newTodos = todos.filter((todo) => todo.id !== id);
 
-    return {
-        todos,
-        setTodos,
-        createTodo,
-        editTodo,
-        deleteTodo
-    };
+		setTodos(newTodos);
+	};
+
+	return {
+		todos,
+		setTodos,
+		createTodo,
+		editTodo,
+		deleteTodo,
+	};
 }
