@@ -120,19 +120,52 @@ export default function App() {
             >
                 Create new task
             </button>
-            <div>
-                {todos && todos.length > 0
-                    ? todos.map((todo) => (
-                        <div
-                            key={todo.id}
-                        >
-                            <p>{todo.title}</p>
-                            <button onClick={() => {viewDetails(todo)}}>View task details</button>
-                            <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
-                        </div>
-                    ))
-                    : <p>No current tasks</p>
-                }
+            <div className="flex flex-row">
+                <div className="w-1/3">
+                    <p>To do</p>
+                    {todos && todos.filter(todo => todo.status === "todo").length > 0
+                        ? todos.filter(todo => todo.status === "todo").map((todo) => (
+                            <div
+                                key={todo.id}
+                            >
+                                <p>{todo.title}</p>
+                                <button onClick={() => {viewDetails(todo)}}>View task details</button>
+                                <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
+                            </div>
+                        ))
+                        : <p>No current tasks</p>
+                    }
+                </div>
+                <div className="w-1/3">
+                    <p>In progress</p>
+                    {todos && todos.filter(todo => todo.status === "wip").length > 0
+                        ? todos.filter(todo => todo.status === "wip").map((todo) => (
+                            <div
+                                key={todo.id}
+                            >
+                                <p>{todo.title}</p>
+                                <button onClick={() => {viewDetails(todo)}}>View task details</button>
+                                <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
+                            </div>
+                        ))
+                        : <p>No current tasks</p>
+                    }
+                </div>
+                <div className="w-1/3"> 
+                    <p>Completed</p>
+                    {todos && todos.filter(todo => todo.status === "completed").length > 0
+                        ? todos.filter(todo => todo.status === "completed").map((todo) => (
+                            <div
+                                key={todo.id}
+                            >
+                                <p>{todo.title}</p>
+                                <button onClick={() => {viewDetails(todo)}}>View task details</button>
+                                <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
+                            </div>
+                        ))
+                        : <p>No current tasks</p>
+                    }
+                </div>
             </div>
             {isModalOpen &&
                 <div
