@@ -1,5 +1,6 @@
 import { useDrop } from "react-dnd";
 import TodoCard from "./TodoCard";
+import { ItemTypes } from "../types/ItemTypes";
 
 export default function Column({title, todos, status, onView, onDelete, onSetTodos}: ColumnProps) {
     const [{ isOver }, dropRef] = useDrop(() => ({
