@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
 
 type Status = "todo" | "wip" | "completed";
@@ -116,18 +118,20 @@ export default function App() {
 
 	return (
         <>
-            <main className="flex flex-col h-screen">
-                <button 
-                    onClick={toggleModal}
-                >
-                    Create new task
-                </button>
-                <div className="flex flex-row grow">
-                    <Column title="To Do" todos={todos.filter(todo => todo.status === "todo")} onView={viewDetails} onDelete={deleteTodo}/>
-                    <Column title="In Progress" todos={todos.filter(todo => todo.status === "wip")} onView={viewDetails} onDelete={deleteTodo}/>
-                    <Column title="Completed" todos={todos.filter(todo => todo.status === "completed")} onView={viewDetails} onDelete={deleteTodo}/>
-                </div>
-            </main>
+            <DndProvider backend={HTML5Backend}>
+                <main className="flex flex-col h-screen">
+                    <button 
+                        onClick={toggleModal}
+                    >
+                        Create new task
+                    </button>
+                    <div className="flex flex-row grow">
+                        <Column title="To Do" status={"todo"} todos={todos.filter(todo => todo.status === "todo")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
+                        <Column title="In Progress" status={"wip"} todos={todos.filter(todo => todo.status === "wip")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
+                        <Column title="Completed" status={"completed"} todos={todos.filter(todo => todo.status === "completed")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
+                    </div>
+                </main>
+            </DndProvider>
             {isModalOpen &&
                 <div
                     className="flex flex-col w-2xs"
