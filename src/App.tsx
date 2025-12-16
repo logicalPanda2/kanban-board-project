@@ -17,9 +17,10 @@ export default function App() {
     const [tagValue, setTagValue] = useState<string>("none");
     const root = document.getElementById("root");
 
-    const createTodo = (title: string, details: string, tag: string): number => {
+    const createTodo = (title: string, details: string, tag: string): boolean => {
         if(!title) {
-            return 1;
+            console.log("ran");
+            return false;
         }
 
         const newTodo: Todo = {
@@ -36,7 +37,7 @@ export default function App() {
 
         todos.length === 0 ? setTodos([newTodo]) : setTodos((prev) => [...prev, newTodo]);
 
-        return 0;
+        return true;
     }
 
     const deleteTodo = (id: string): void => {
@@ -53,6 +54,11 @@ export default function App() {
         const newState = !isModalOpen;
         setModalOpen(newState);
         [...root.children].forEach(child => child.toggleAttribute("inert"));
+    }
+
+    const closeModal = (): void => {
+        toggleModal();
+        setError(false);
     }
 
 	return (
@@ -127,13 +133,13 @@ export default function App() {
                     </select>
 
                     <button onClick={() => {
-                        createTodo(titleValue, detailsValue, tagValue) === 1
-                        ? setError(!hasError) // fix incorrect error toggling later.
-                        : toggleModal()
+                        createTodo(titleValue, detailsValue, tagValue) === false
+                        ? setError(true)
+                        : closeModal()
                     }}>
                         Create
                     </button>
-                    <button onClick={toggleModal}>Close</button>
+                    <button onClick={() => { closeModal() }}>Close</button>
                     {hasError &&
                         <p>Cannot create task with no title</p>
                     }
