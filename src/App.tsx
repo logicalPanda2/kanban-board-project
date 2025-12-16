@@ -5,6 +5,13 @@ import Column from "./components/Column";
 import Modal from "./components/Modal";
 import { useTodos } from "./hooks/useTodos";
 
+function isTag(value: string): value is Tag {
+    if(value === "none" || value === "low" || value === "mid" || value === "high") {
+        return true;
+    }
+    return false;
+}
+
 export default function App() {
     const {
         todos,
@@ -19,7 +26,9 @@ export default function App() {
     const [titleValue, setTitleValue] = useState<string>("");
     const [detailsValue, setDetailsValue] = useState<string>("");
     const [tagValue, setTagValue] = useState<Tag>("none");
+    const [filterValue, setFilterValue] = useState<Tag>("none");
     const root = document.getElementById("root");
+    const filteredTodos = filterValue !== "none" ? todos.filter(todo => todo.tag === filterValue) : todos;
 
     const toggleModal = (): void => {
         if(!root) throw new Error("root element not found");
@@ -48,17 +57,27 @@ export default function App() {
 
 	return (
         <>
+            <header>
+                <h1>Kanban Board</h1>
+                <button 
+                    onClick={toggleModal}
+                >
+                    Create new task
+                </button>
+                <label htmlFor="filter">Filter</label>
+                <select name="filter" id="filter" value={filterValue} onChange={(e) => {isTag(e.target.value) ? setFilterValue(e.target.value) : setFilterValue("none")}}>
+                    <option value="none">None</option>
+                    <option value="low">Low Priority</option>
+                    <option value="mid">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+            </header>
             <DndProvider backend={HTML5Backend}>
-                <main className="flex flex-col h-screen">
-                    <button 
-                        onClick={toggleModal}
-                    >
-                        Create new task
-                    </button>
+                <main className="flex flex-col">
                     <div className="flex flex-row grow">
-                        <Column title="To Do" status={"todo"} todos={todos.filter(todo => todo.status === "todo")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
-                        <Column title="In Progress" status={"wip"} todos={todos.filter(todo => todo.status === "wip")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
-                        <Column title="Completed" status={"completed"} todos={todos.filter(todo => todo.status === "completed")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
+                        <Column title="To Do" status={"todo"} todos={filteredTodos.filter(todo => todo.status === "todo")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
+                        <Column title="In Progress" status={"wip"} todos={filteredTodos.filter(todo => todo.status === "wip")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
+                        <Column title="Completed" status={"completed"} todos={filteredTodos.filter(todo => todo.status === "completed")} onView={viewDetails} onDelete={deleteTodo} onSetTodos={setTodos}/>
                     </div>
                 </main>
             </DndProvider>
