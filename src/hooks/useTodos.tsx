@@ -51,8 +51,6 @@ export function useTodos(localStorageKey: string) {
 	};
 
 	const deleteTodo = (id: string): void => {
-		if (!todos) return;
-
 		const newTodos = todos.filter((todo) => todo.id !== id);
 
 		setTodos(newTodos);

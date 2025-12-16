@@ -38,7 +38,7 @@ export default function Column({
 			style={{ backgroundColor: isOver ? "#f0f0f0" : undefined }}
 		>
 			<p>{title}</p>
-			{todos && todos.length > 0 ? (
+			{todos.length > 0 ? (
 				todos.map((todo) => (
 					<TodoCard
 						key={todo.id}
