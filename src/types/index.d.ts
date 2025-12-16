@@ -21,6 +21,21 @@ interface ColumnProps {
     onSetTodos: React.Dispatch<React.SetStateAction<Todo[]>>
 }
 
+interface ModalProps {
+    editedId: string,
+    hasError: boolean,
+    onError: React.Dispatch<React.SetStateAction<boolean>>,
+    titleValue: string,
+    onTitleChange: React.Dispatch<React.SetStateAction<string>>,
+    detailsValue: string,
+    onDetailsChange: React.Dispatch<React.SetStateAction<string>>,
+    tagValue: Tag,
+    onTagChange: React.Dispatch<React.SetStateAction<Tag>>,
+    onEdit: (title: string, details: string, tag: Tag) => boolean,
+    onCreate: (title: string, details: string, tag: Tag) => boolean,
+    onClose: () => void,
+}
+
 type Tag = "none" | "low" | "mid" | "high";
 function isTag(value: string): value is Tag {
     if(value === "none" || value === "low" || value === "mid" || value === "high") {
