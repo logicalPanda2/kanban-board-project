@@ -4,24 +4,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
-type Status = "todo" | "wip" | "completed";
-type Tag = "none" | "low" | "mid" | "high";
-
-interface Todo {
-    title: string,
-    details: string,
-    status: Status,
-    tag: Tag,
-    id: string,
-}
-
-function isTag(value: string): value is Tag {
-    if(value === "none" || value === "low" || value === "mid" || value === "high") {
-        return true;
-    }
-    return false;
-}
-
 export default function App() {
     const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
     const [isModalOpen, setModalOpen] = useState<boolean>(false);

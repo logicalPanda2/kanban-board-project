@@ -1,27 +1,6 @@
-import { useDrag } from "react-dnd"
+import { useDrag } from "react-dnd";
 
-interface Props {
-    todo: Todo,
-    onTaskView: (todo: Todo) => void,
-    onTaskDelete: (id: string) => void,
-}
-
-type Status = "todo" | "wip" | "completed";
-type Tag = "none" | "low" | "mid" | "high";
-
-interface Todo {
-    title: string,
-    details: string,
-    status: Status,
-    tag: Tag,
-    id: string,
-}
-
-const ItemTypes = {
-    TODO: "TODO",
-}
-
-export default function TodoCard({todo, onTaskView, onTaskDelete}: Props) {
+export default function TodoCard({todo, onTaskView, onTaskDelete}: TodoCardProps) {
     const [{ isDragging }, dragRef] = useDrag(() => ({
         type: ItemTypes.TODO,
         item: { id: todo.id },
