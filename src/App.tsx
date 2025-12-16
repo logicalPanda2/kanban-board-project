@@ -20,11 +20,8 @@ export default function App() {
 
     const createTodo = (title: string, details: string, tag: string): boolean => {
         if(!title) {
-            console.log("ran");
             return false;
         }
-        
-        deleteTodo(editedId);
 
         const newTodo: Todo = {
             title: title,
@@ -37,9 +34,38 @@ export default function App() {
         setTitleValue("");
         setDetailsValue("");
         setTagValue("none");
-        setEditedId("");
 
         todos.length === 0 ? setTodos([newTodo]) : setTodos((prev) => [...prev, newTodo]);
+
+        return true;
+    }
+
+    const editTodo = (title: string, details: string, tag: string): boolean => {
+        if(!title) {
+            return false;
+        }
+
+        const oldTodo = todos.find(todo => todo.id === editedId);
+
+        if(!oldTodo) {
+            return false;
+        }
+
+        const newTodo = {
+            ...oldTodo,
+            title: title,
+            details: details,
+            tag: tag,
+        }
+
+        const newTodos = [...todos.filter(todo => todo.id !== editedId), newTodo];
+        
+        setTodos(newTodos);
+
+        setTitleValue("");
+        setDetailsValue("");
+        setTagValue("none");
+        setEditedId("");
 
         return true;
     }
@@ -143,15 +169,15 @@ export default function App() {
                     </select>
 
                     <button onClick={() => {
-                        createTodo(titleValue, detailsValue, tagValue) === false
-                        ? setError(true)
-                        : closeModal()
+                        editedId
+                        ? (editTodo(titleValue, detailsValue, tagValue) === false ? setError(true) : closeModal())
+                        : (createTodo(titleValue, detailsValue, tagValue) === false ? setError(true) : closeModal())
                     }}>
-                        Confirm
+                        {editedId ? "Confirm": "Create"}
                     </button>
                     <button onClick={() => { closeModal() }}>Close</button>
                     {hasError &&
-                        <p>Cannot create task with no title</p>
+                        <p>Title cannot be empty</p>
                     }
                 </div>
             }
