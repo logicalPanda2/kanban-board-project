@@ -12,6 +12,7 @@ export default function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [hasError, setError] = useState<boolean>(false);
+    const [editedId, setEditedId] = useState<string>("");
     const [titleValue, setTitleValue] = useState<string>("");
     const [detailsValue, setDetailsValue] = useState<string>("");
     const [tagValue, setTagValue] = useState<string>("none");
@@ -22,6 +23,8 @@ export default function App() {
             console.log("ran");
             return false;
         }
+        
+        deleteTodo(editedId);
 
         const newTodo: Todo = {
             title: title,
@@ -34,6 +37,7 @@ export default function App() {
         setTitleValue("");
         setDetailsValue("");
         setTagValue("none");
+        setEditedId("");
 
         todos.length === 0 ? setTodos([newTodo]) : setTodos((prev) => [...prev, newTodo]);
 
@@ -61,6 +65,14 @@ export default function App() {
         setError(false);
     }
 
+    const viewDetails = (todo: Todo): void => {
+        setTitleValue(todo.title);
+        setDetailsValue(todo.details);
+        setTagValue(todo.tag);
+        setEditedId(todo.id);
+        toggleModal();
+    }
+
 	return (
         <>
             <button 
@@ -75,9 +87,7 @@ export default function App() {
                             key={todo.id}
                         >
                             <p>{todo.title}</p>
-                            <p>{todo.details}</p>
-                            <p>{todo.tag}</p>
-                            <p>{todo.id}</p>
+                            <button onClick={() => {viewDetails(todo)}}>View task details</button>
                             <button onClick={() => {deleteTodo(todo.id)}}>Delete Task</button>
                         </div>
                     ))
@@ -137,7 +147,7 @@ export default function App() {
                         ? setError(true)
                         : closeModal()
                     }}>
-                        Create
+                        Confirm
                     </button>
                     <button onClick={() => { closeModal() }}>Close</button>
                     {hasError &&
