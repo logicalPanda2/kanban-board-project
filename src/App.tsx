@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 type Status = "todo" | "wip" | "completed";
 type Tag = "none" | "low" | "mid" | "high";
@@ -22,7 +23,7 @@ function isTag(value: string): value is Tag {
 }
 
 export default function App() {
-    const [todos, setTodos] = useState<Todo[]>([]);
+    const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [hasError, setError] = useState<boolean>(false);
     const [editedId, setEditedId] = useState<string>("");
@@ -74,7 +75,6 @@ export default function App() {
         const newTodos = [...todos.filter(todo => todo.id !== editedId), newTodo];
         
         setTodos(newTodos);
-
         setTitleValue("");
         setDetailsValue("");
         setTagValue("none");
