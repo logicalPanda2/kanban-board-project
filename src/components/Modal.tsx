@@ -70,15 +70,15 @@ export default function Modal({
 			<button
 				onClick={() => {
 					editedId
-						? onEdit(
+						? !onEdit(
 								titleValue,
 								detailsValue,
 								tagValue,
 								editedId,
-							) === false
+							)
 							? onError(true)
 							: onClose()
-						: onCreate(titleValue, detailsValue, tagValue) === false
+						: !onCreate(titleValue, detailsValue, tagValue)
 							? onError(true)
 							: onClose();
 				}}
