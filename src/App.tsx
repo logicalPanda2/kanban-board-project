@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
+import Modal from "./components/Modal";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function App() {
@@ -114,68 +115,7 @@ export default function App() {
                     </div>
                 </main>
             </DndProvider>
-            {isModalOpen &&
-                <div
-                    className="flex flex-col w-2xs"
-                >
-                    <p>{editedId ? "Edit a task": "Create a task"}</p>
-                    <label 
-                        htmlFor="titleField"
-                    >
-                        Task Title
-                    </label>
-                    <input 
-                        type="text" 
-                        name="title" 
-                        id="titleField" 
-                        className="border border-solid border-black"
-                        value={titleValue}
-                        onChange={(e) => {setTitleValue(e.target.value)}}
-                    />
-                    <label 
-                        htmlFor="detailsField"
-                    >
-                        Task Details
-                    </label>
-                    <input 
-                        type="text" 
-                        name="details" 
-                        id="detailsField" 
-                        className="border border-solid border-black"
-                        value={detailsValue}
-                        onChange={(e) => {setDetailsValue(e.target.value)}}
-                    />
-                    <label 
-                        htmlFor="tagField"
-                    >
-                        Task Tag
-                    </label>
-                    <select 
-                        name="tag" 
-                        id="tagField"
-                        className="border border-solid border-black"
-                        value={tagValue}
-                        onChange={(e) => {isTag(e.target.value) ? setTagValue(e.target.value) : setTagValue("none")}}
-                    >
-                        <option value="none">None</option>
-                        <option value="low">Low Priority</option>
-                        <option value="mid">Medium Priority</option>
-                        <option value="high">High Priority</option>
-                    </select>
-
-                    <button onClick={() => {
-                        editedId
-                        ? (editTodo(titleValue, detailsValue, tagValue) === false ? setError(true) : closeModal())
-                        : (createTodo(titleValue, detailsValue, tagValue) === false ? setError(true) : closeModal())
-                    }}>
-                        {editedId ? "Confirm": "Create"}
-                    </button>
-                    <button onClick={() => { closeModal() }}>Close</button>
-                    {hasError &&
-                        <p>Title cannot be empty</p>
-                    }
-                </div>
-            }
+            {isModalOpen && <Modal editedId={editedId} titleValue={titleValue} onTitleChange={setTitleValue} detailsValue={detailsValue} onDetailsChange={setDetailsValue} tagValue={tagValue} onTagChange={setTagValue} onEdit={editTodo} onCreate={createTodo} onClose={closeModal} hasError={hasError} onError={setError}/>}
         </>
     );
 }
