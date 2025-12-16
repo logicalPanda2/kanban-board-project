@@ -3,10 +3,16 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
 import Modal from "./components/Modal";
-import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useTodos } from "./hooks/useTodos";
 
 export default function App() {
-    const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
+    const {
+        todos,
+        setTodos,
+        createTodo,
+        editTodo,
+        deleteTodo
+    } = useTodos("todos");
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [hasError, setError] = useState<boolean>(false);
     const [editedId, setEditedId] = useState<string>("");
@@ -14,65 +20,6 @@ export default function App() {
     const [detailsValue, setDetailsValue] = useState<string>("");
     const [tagValue, setTagValue] = useState<Tag>("none");
     const root = document.getElementById("root");
-
-    const createTodo = (title: string, details: string, tag: Tag): boolean => {
-        if(!title) {
-            return false;
-        }
-
-        const newTodo: Todo = {
-            title: title,
-            details: details,
-            status: "todo",
-            tag: tag,
-            id: crypto.randomUUID(),
-        }
-
-        setTitleValue("");
-        setDetailsValue("");
-        setTagValue("none");
-
-        todos.length === 0 ? setTodos([newTodo]) : setTodos((prev) => [...prev, newTodo]);
-
-        return true;
-    }
-
-    const editTodo = (title: string, details: string, tag: Tag): boolean => {
-        if(!title) {
-            return false;
-        }
-
-        const oldTodo = todos.find(todo => todo.id === editedId);
-
-        if(!oldTodo) {
-            return false;
-        }
-
-        const newTodo = {
-            ...oldTodo,
-            title: title,
-            details: details,
-            tag: tag,
-        }
-
-        const newTodos = [...todos.filter(todo => todo.id !== editedId), newTodo];
-        
-        setTodos(newTodos);
-        setTitleValue("");
-        setDetailsValue("");
-        setTagValue("none");
-        setEditedId("");
-
-        return true;
-    }
-
-    const deleteTodo = (id: string): void => {
-        if(!todos) return;
-
-        const newTodos = todos.filter(todo => todo.id !== id);
-
-        setTodos(newTodos);
-    }
 
     const toggleModal = (): void => {
         if(!root) throw new Error("root element not found");
