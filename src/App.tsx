@@ -1,7 +1,7 @@
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
-import Modal from "./components/Modal";
+import TodoModal from "./components/TodoModal";
 import Header from "./components/Header";
 import { useTodos } from "./hooks/useTodos";
 import { useModalStates } from "./hooks/useModalStates";
@@ -74,7 +74,7 @@ export default function App() {
 				</main>
 			</DndProvider>
 			{isModalOpen && (
-				<Modal
+				<TodoModal
 					editedId={editedId}
 					titleValue={titleValue}
 					onTitleChange={setTitleValue}
