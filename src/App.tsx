@@ -1,50 +1,34 @@
-import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
 import Modal from "./components/Modal";
-import { useTodos } from "./hooks/useTodos";
 import Header from "./components/Header";
+import { useTodos } from "./hooks/useTodos";
+import { useModalStates } from "./hooks/useModalStates";
 
 export default function App() {
 	const { todos, setTodos, createTodo, editTodo, deleteTodo } = useTodos("todos");
-	const [isModalOpen, setModalOpen] = useState<boolean>(false);
-	const [hasError, setError] = useState<boolean>(false);
-	const [editedId, setEditedId] = useState<string>("");
-	const [titleValue, setTitleValue] = useState<string>("");
-	const [detailsValue, setDetailsValue] = useState<string>("");
-	const [tagValue, setTagValue] = useState<Tag>("none");
-	const [filterValue, setFilterValue] = useState<Tag>("none");
-	const root = document.getElementById("root");
-	const filteredTodos =
-		filterValue !== "none"
-			? todos.filter((todo) => todo.tag === filterValue)
-			: todos;
-
-	const toggleModal = (): void => {
-		if (!root) throw new Error("root element not found");
-
-		const newState = !isModalOpen;
-		setModalOpen(newState);
-		[...root.children].forEach((child) => child.toggleAttribute("inert"));
-	};
-
-	const closeModal = (): void => {
-		toggleModal();
-		setTitleValue("");
-		setDetailsValue("");
-		setTagValue("none");
-		setEditedId("");
-		setError(false);
-	};
-
-	const viewDetails = (todo: Todo): void => {
-		setTitleValue(todo.title);
-		setDetailsValue(todo.details);
-		setTagValue(todo.tag);
-		setEditedId(todo.id);
-		toggleModal();
-	};
+    const {
+        isModalOpen,
+        hasError,
+        setError,
+        editedId,
+        titleValue,
+        setTitleValue,
+        detailsValue,
+        setDetailsValue,
+        tagValue,
+        setTagValue,
+        filterValue,
+        setFilterValue,
+        toggleModal,
+        closeModal,
+        viewDetails
+    } = useModalStates();
+    const filteredTodos =
+        filterValue !== "none"
+            ? todos.filter((todo) => todo.tag === filterValue)
+            : todos;
 
 	return (
 		<>
