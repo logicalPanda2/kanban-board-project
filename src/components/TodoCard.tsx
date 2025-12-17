@@ -19,7 +19,7 @@ export default function TodoCard({
 			ref={(node) => {
 				dragRef(node);
 			}}
-			className="rounded-lg px-4 py-3 bg-gray-100 [box-shadow:0_1px_1px_black,inset_0_1px_2px_white]"
+			className="rounded-lg px-4 py-3 bg-gray-100 [box-shadow:0_1px_1.5px_black,inset_0_1px_2px_white]"
 			style={{ opacity: isDragging ? 0.5 : 1 }}
 		>
 			<p className="text-xl mb-2 text-left px-2 pt-1">{todo.title}</p>
