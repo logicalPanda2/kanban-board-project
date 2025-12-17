@@ -67,7 +67,7 @@ export default function TodoModal({
 						}}
 					/>
 					{hasError && (
-						<p className="text-xs mb-1">Title cannot be empty</p>
+						<p className="text-xs mb-1 text-red-600 font-semibold">Title cannot be empty</p>
 					)}
 					<label htmlFor="detailsField" className="text-xl mb-1">
 						Details
