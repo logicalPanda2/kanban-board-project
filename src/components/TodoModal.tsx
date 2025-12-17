@@ -26,7 +26,7 @@ export default function TodoModal({
 }: ModalProps) {
 	return (
 		<div className="fixed inset-0 z-20 bg-neutral-600/70 flex items-center justify-center">
-			<div className="w-lg h-96 rounded-2xl px-6 py-4 bg-gray-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white]">
+			<div className="w-lg h-96 rounded-2xl px-6 py-4 bg-gray-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white] selection:bg-green-800 selection:text-neutral-100">
 				<p className="text-3xl mb-4">
 					{editedId ? "Edit" : "New"}
 				</p>
