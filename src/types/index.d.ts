@@ -41,5 +41,11 @@ interface ModalProps {
 	onClose: () => void;
 }
 
+interface HeaderProps {
+    onToggle: () => void,
+    value: Tag,
+    onChange: React.Dispatch<React.SetStateAction<Tag>>,
+}
+
 type Tag = "none" | "low" | "mid" | "high";
 type Status = "todo" | "wip" | "completed";
