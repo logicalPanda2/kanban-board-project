@@ -101,8 +101,8 @@ export default function TodoModal({
 				>
 					{editedId ? "Confirm" : "Create"}
 				</button>
-				<div className="absolute top-5 right-6 hover:bg-gray-300 focus-within:bg-gray-300 transition rounded-full px-3 py-1 focus-within:outline-0">
-                    <button onClick={onClose} className="transform-[scaleX(1.4)] font-semibold focus-visible:outline-0" aria-label="close">X</button>
+				<div className="absolute top-5 right-6 hover:bg-gray-300 focus-within:bg-gray-300 transition rounded-full focus-within:outline-0">
+                    <button onClick={onClose} className="px-3 py-1 transform-[scaleX(1.4)] font-semibold focus-visible:outline-0" aria-label="close">X</button>
                 </div>
 			</div>
 		</div>
