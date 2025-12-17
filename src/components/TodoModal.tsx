@@ -44,7 +44,7 @@ export default function TodoModal({
         return () => {
             clearTimeout(timeout);
         }
-    })
+    }, [modalRef, overlayRef])
 
 	return (
 		<div className="fixed inset-0 z-20 bg-neutral-600/70 flex items-center justify-center transition" ref={overlayRef}>
