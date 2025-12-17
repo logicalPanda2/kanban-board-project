@@ -59,28 +59,14 @@ export default function App() {
 
 	return (
 		<>
-			<header>
-				<h1>Kanban Board</h1>
-				<button onClick={toggleModal}>Create new task</button>
-				<label htmlFor="filter">Filter</label>
-				<select
-					name="filter"
-					id="filter"
-					value={filterValue}
-					onChange={(e) => {
-						isTag(e.target.value)
-							? setFilterValue(e.target.value)
-							: setFilterValue("none");
-					}}
-				>
-					<option value="none">None</option>
-					<option value="low">Low Priority</option>
-					<option value="mid">Medium Priority</option>
-					<option value="high">High Priority</option>
-				</select>
+			<header className="flex flex-row flex-nowrap items-center py-4 px-6 justify-between">
+                <div className="flex flex-row flex-nowrap items-center">
+                    <h1 className="text-4xl">Kanban Board</h1>
+                </div>
+                <button onClick={toggleModal} className="mx-4 border border-solid border-black py-2 px-4 rounded-lg">Create new task</button>
 			</header>
-			<DndProvider backend={HTML5Backend}>
-				<main className="flex flex-col">
+            <DndProvider backend={HTML5Backend}>
+				<main className="flex flex-col grow">
 					<div className="flex flex-row grow">
 						<Column
 							title="To Do"
