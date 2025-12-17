@@ -22,21 +22,23 @@ export default function TodoCard({
 			className="border border-solid border-black rounded-lg p-4"
 			style={{ opacity: isDragging ? 0.5 : 1 }}
 		>
-			<p>{todo.title}</p>
-			<button
-				onClick={() => {
-					onTaskView(todo);
-				}}
-			>
-				View task details
-			</button>
-			<button
-				onClick={() => {
-					onTaskDelete(todo.id);
-				}}
-			>
-				Delete Task
-			</button>
+			<p className="text-xl mb-2">{todo.title}</p>
+            <div className="flex flex-row flex-nowrap justify-between items-center">
+                 <button
+                    onClick={() => {
+                        onTaskView(todo);
+                    }}
+                >
+                    View details...
+                </button>
+                <button
+                    onClick={() => {
+                        onTaskDelete(todo.id);
+                    }}
+                >
+                    Delete
+                </button>
+            </div>
 		</div>
 	);
 }
