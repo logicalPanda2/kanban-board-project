@@ -48,8 +48,12 @@ export default function App() {
 
 	return (
 		<>
-			<Header onToggle={toggleModal} value={filterValue} onChange={setFilterValue}/>
-            <DndProvider backend={HTML5Backend}>
+			<Header
+				onToggle={toggleModal}
+				value={filterValue}
+				onChange={setFilterValue}
+			/>
+			<DndProvider backend={HTML5Backend}>
 				<main className="flex flex-col grow">
 					<div className="flex flex-row grow">
 						<Column

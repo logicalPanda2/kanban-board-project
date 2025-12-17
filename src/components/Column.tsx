@@ -48,7 +48,9 @@ export default function Column({
 					/>
 				))
 			) : (
-				<p className="text-center mt-4 text-gray-700">No current tasks</p>
+				<p className="text-center mt-4 text-gray-700">
+					No current tasks
+				</p>
 			)}
 		</div>
 	);
