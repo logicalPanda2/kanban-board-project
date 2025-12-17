@@ -25,10 +25,10 @@ export default function TodoModal({
 	onClose,
 }: ModalProps) {
 	return (
-		<div className="fixed inset-0 bg-gray-500/70 flex items-center justify-center">
-			<div className="w-lg h-96 rounded-2xl px-6 py-4 bg-white flex flex-col relative">
+		<div className="fixed inset-0 z-20 bg-neutral-600/70 flex items-center justify-center">
+			<div className="w-lg h-96 rounded-2xl px-6 py-4 bg-neutral-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white] selection:bg-green-800 selection:text-neutral-100">
 				<p className="text-3xl mb-4">
-					{editedId ? "Edit a task" : "Create a task"}
+					{editedId ? "Edit" : "New"}
 				</p>
 				<div className="flex flex-col w-3/4">
 					<label htmlFor="titleField" className="text-xl mb-1">
@@ -38,7 +38,7 @@ export default function TodoModal({
 						type="text"
 						name="title"
 						id="titleField"
-						className={`border border-solid border-black px-2 py-1 rounded-lg ${hasError ? "mb-1" : "mb-2"}`}
+						className={`[box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition px-2 py-1 rounded-lg ${hasError ? "mb-1" : "mb-2"}`}
 						value={titleValue}
 						onChange={(e) => {
 							onTitleChange(e.target.value);
@@ -54,7 +54,7 @@ export default function TodoModal({
 						type="text"
 						name="details"
 						id="detailsField"
-						className="border border-solid border-black px-2 py-1 rounded-lg mb-2"
+						className="[box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition px-2 py-1 rounded-lg mb-2"
 						value={detailsValue}
 						onChange={(e) => {
 							onDetailsChange(e.target.value);
@@ -63,7 +63,7 @@ export default function TodoModal({
 					<label htmlFor="tagField" className="text-xl mb-1">
 						Tag
 					</label>
-					<div className="px-2 py-1 border border-solid border-black rounded-lg focus-within:outline-[1.5px]">
+					<div className="px-2 py-1 [box-shadow:0_1px_2px_black] focus-within:bg-white hover:bg-white focus-within:outline-0 bg-neutral-100/50 transition rounded-lg">
 						<select
 							name="tag"
 							id="tagField"
@@ -83,7 +83,7 @@ export default function TodoModal({
 					</div>
 				</div>
 				<button
-					className="absolute px-4 py-1 bottom-6 border border-solid border-blackr rounded-lg"
+					className="absolute px-4 py-1 bottom-6 [box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition rounded-lg"
 					onClick={() => {
 						editedId
 							? !onEdit(
@@ -101,9 +101,9 @@ export default function TodoModal({
 				>
 					{editedId ? "Confirm" : "Create"}
 				</button>
-				<button onClick={onClose} className="absolute top-5 right-6">
-					X
-				</button>
+				<div className="absolute top-5 right-6 hover:bg-gray-300 focus-within:bg-gray-300 transition rounded-full px-3 py-1 focus-within:outline-0">
+                    <button onClick={onClose} className="transform-[scaleX(1.4)] font-semibold focus-visible:outline-0" aria-label="close">X</button>
+                </div>
 			</div>
 		</div>
 	);
