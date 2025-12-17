@@ -10,7 +10,7 @@ function isTag(value: string): value is Tag {
 	return false;
 }
 
-export default function Modal({
+export default function TodoModal({
 	editedId,
 	hasError,
 	onError,
