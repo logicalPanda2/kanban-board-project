@@ -12,7 +12,7 @@ function isTag(value: string): value is Tag {
 
 export default function Header({ onToggle, value, onChange }: HeaderProps) {
 	return (
-		<header className="flex flex-row flex-nowrap items-center py-4 px-6 sticky top-0 z-10 justify-between bg-green-800/95 text-white selection:text-green-800 selection:bg-neutral-100">
+		<header className="flex flex-row flex-nowrap items-center py-4 px-6 sticky top-0 z-10 justify-between bg-green-800/95 text-white selection:text-green-800 selection:bg-neutral-100 backdrop-blur-xs">
 			<h1 className="text-4xl font-semibold">Kanban Board</h1>
 			<div className="flex flex-row flex-nowrap items-center">
 				<button
