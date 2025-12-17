@@ -42,9 +42,9 @@ interface ModalProps {
 }
 
 interface HeaderProps {
-    onToggle: () => void,
-    value: Tag,
-    onChange: React.Dispatch<React.SetStateAction<Tag>>,
+	onToggle: () => void;
+	value: Tag;
+	onChange: React.Dispatch<React.SetStateAction<Tag>>;
 }
 
 type Tag = "none" | "low" | "mid" | "high";
