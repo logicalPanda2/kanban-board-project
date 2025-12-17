@@ -33,6 +33,8 @@ export function useTodos(localStorageKey: string) {
 
 		if (!oldTodo) return false;
 
+        const index = todos.indexOf(oldTodo);
+
 		const newTodo = {
 			...oldTodo,
 			title: title,
@@ -40,12 +42,10 @@ export function useTodos(localStorageKey: string) {
 			tag: tag,
 		};
 
-		const newTodos = [
-			...todos.filter((todo) => todo.id !== targetId),
-			newTodo,
-		];
+		const copy = todos;
+        copy[index] = newTodo;
 
-		setTodos(newTodos);
+		setTodos(copy);
 
 		return true;
 	};
