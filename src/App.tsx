@@ -38,7 +38,7 @@ export default function App() {
 				onChange={setFilterValue}
 			/>
 			<DndProvider backend={HTML5Backend}>
-				<main className="flex flex-col grow">
+				<main className="flex flex-col grow selection:bg-green-800 selection:text-neutral-100">
 					<div className="flex flex-row grow">
 						<Column
 							title="To Do"
