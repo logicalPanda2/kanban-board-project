@@ -33,12 +33,12 @@ export default function TodoModal({
         if(!modalRef.current || !overlayRef.current) return;
 
         overlayRef.current.classList.add("bg-transparent");
-        modalRef.current.classList.add("top-128");
+        modalRef.current.classList.add("top-512");
         let timeout = setTimeout(() => {
             if(!modalRef.current || !overlayRef.current) return;
 
             overlayRef.current.classList.remove("bg-transparent");
-            modalRef.current.classList.remove("top-128");
+            modalRef.current.classList.remove("top-512");
         }, 4);
 
         return () => {
