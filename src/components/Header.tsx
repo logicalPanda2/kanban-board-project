@@ -17,7 +17,7 @@ export default function Header({ onToggle, value, onChange }: HeaderProps) {
 			<div className="flex flex-row flex-nowrap items-center">
 				<button
 					onClick={onToggle}
-					className="mx-4 py-2 px-4 rounded-lg bg-green-700/75 [box-shadow:0_1px_2px_black] active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 font-normal hover:bg-green-800/80 transition focus-visible:[box-shadow:0_3px_4px_rgba(0,0,0,0.75)] focus-visible:outline-0"
+					className="mx-4 py-2 px-4 rounded-lg bg-green-700/75 [box-shadow:0_1px_2px_black] active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 font-normal hover:bg-green-800/80 transition focus-visible:bg-green-800/80 focus-visible:outline-0"
 				>
 					Create new task
 				</button>
@@ -25,7 +25,7 @@ export default function Header({ onToggle, value, onChange }: HeaderProps) {
 					<label htmlFor="filter" className="mb-1 font-medium">
 						Filter
 					</label>
-					<div className="py-1 px-2 rounded-lg active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 bg-green-700/75 [box-shadow:0_1px_2px_black] font-normal hover:bg-green-800/80 transition focus-within:[box-shadow:0_3px_4px_rgba(0,0,0,0.75)]">
+					<div className="py-1 px-2 rounded-lg active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 bg-green-700/75 [box-shadow:0_1px_2px_black] font-normal hover:bg-green-800/80 transition focus-within:bg-green-800/80">
 						<select
 							name="filter"
 							id="filter"
