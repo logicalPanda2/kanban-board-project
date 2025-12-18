@@ -54,9 +54,11 @@ export default function TodoCard({
                         : "bg-white"
                     }`}>    
                 </div>
-                <button onClick={() => onTaskChangeStatus(todo, "left")}>L</button>
-                <button onClick={() => onTaskChangeStatus(todo, "right")}>R</button>
 			</div>
+            <div className="flex flex-row flex-nowrap justify-center gap-8">
+                <button onClick={() => onTaskChangeStatus(todo, "left")} className="font-semibold transform-[rotateZ(90deg)_scaleY(1.5)] md:transform-[scaleY(1.5)]">&lt;</button>
+                <button onClick={() => onTaskChangeStatus(todo, "right")} className="font-semibold transform-[rotateZ(90deg)_scaleY(1.5)] md:transform-[scaleY(1.5)]">&gt;</button>
+            </div>
 		</div>
 	);
 }
