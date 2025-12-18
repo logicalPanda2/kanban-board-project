@@ -1,7 +1,7 @@
-# Recipe Searcher
-<img src="public/homepage.png" alt="home page" width="959" height="436">
+# Kanban Board Project
+<img src="public/home-page.png" alt="home page" width="959" height="436">
 
-A simple task tracker. Responsiveness + other features underway. Check out <a href="#future-plans">future plans</a> for more details.
+A simple kanban-style task tracker.
 
 ## Table Of Contents
 1. [Installation](#installation)
