@@ -10,6 +10,7 @@ interface TodoCardProps {
 	todo: Todo;
 	onTaskView: (todo: Todo) => void;
 	onTaskDelete: (id: string) => void;
+    onTaskChangeStatus: (todo: Todo, key: "left" | "right") => void; 
 }
 
 interface ColumnProps {
@@ -19,6 +20,7 @@ interface ColumnProps {
 	onView: (todo: Todo) => void;
 	onDelete: (id: string) => void;
 	onSetTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+    onChangeStatus: (todo: Todo, key: "left" | "right") => void;
 }
 
 interface ModalProps {

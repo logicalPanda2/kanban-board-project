@@ -9,6 +9,7 @@ export default function Column({
 	onView,
 	onDelete,
 	onSetTodos,
+    onChangeStatus,
 }: ColumnProps) {
 	const [{ isOver }, dropRef] = useDrop(() => ({
 		accept: ItemTypes.TODO,
@@ -45,6 +46,7 @@ export default function Column({
 						todo={todo}
 						onTaskView={onView}
 						onTaskDelete={onDelete}
+                        onTaskChangeStatus={onChangeStatus}
 					/>
 				))
 			) : (

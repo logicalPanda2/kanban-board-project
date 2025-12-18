@@ -10,7 +10,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function App() {
     const [hasVisited, setHasVisited] = useLocalStorage<boolean>("hasVisited", false);
-	const { todos, setTodos, createTodo, editTodo, deleteTodo } = useTodos("todos");
+	const { todos, setTodos, createTodo, editTodo, deleteTodo, changeTodoStatus } = useTodos("todos");
     const {
         isModalOpen,
         hasError,
@@ -52,6 +52,7 @@ export default function App() {
 							onView={viewDetails}
 							onDelete={deleteTodo}
 							onSetTodos={setTodos}
+                            onChangeStatus={changeTodoStatus}
 						/>
 						<Column
 							title="In Progress"
@@ -62,6 +63,7 @@ export default function App() {
 							onView={viewDetails}
 							onDelete={deleteTodo}
 							onSetTodos={setTodos}
+                            onChangeStatus={changeTodoStatus}
 						/>
 						<Column
 							title="Completed"
@@ -72,6 +74,7 @@ export default function App() {
 							onView={viewDetails}
 							onDelete={deleteTodo}
 							onSetTodos={setTodos}
+                            onChangeStatus={changeTodoStatus}
 						/>
 					</div>
 				</main>
