@@ -85,24 +85,38 @@ export default function TodoModal({
 					<label htmlFor="tagField" className="text-xl mb-1">
 						Tag
 					</label>
-					<div className="px-2 py-1 [box-shadow:0_1px_2px_black] focus-within:bg-white hover:bg-white focus-within:outline-0 bg-neutral-100/50 transition rounded-lg">
-						<select
-							name="tag"
-							id="tagField"
-							className="focus-visible:outline-0 w-full"
-							value={tagValue}
-							onChange={(e) => {
-								isTag(e.target.value)
-									? onTagChange(e.target.value)
-									: onTagChange("none");
-							}}
-						>
-							<option value="none">None</option>
-							<option value="low">Low</option>
-							<option value="mid">Medium</option>
-							<option value="high">High</option>
-						</select>
-					</div>
+                    <div className="flex flex-row flex-nowrap items-center">
+                       <div className="px-2 py-1 [box-shadow:0_1px_2px_black] focus-within:bg-white hover:bg-white focus-within:outline-0 bg-neutral-100/50 transition rounded-lg w-9/10">
+                            <select
+                                name="tag"
+                                id="tagField"
+                                className="focus-visible:outline-0 w-full"
+                                value={tagValue}
+                                onChange={(e) => {
+                                    isTag(e.target.value)
+                                        ? onTagChange(e.target.value)
+                                        : onTagChange("none");
+                                }}
+                            >
+                                <option value="none">None</option>
+                                <option value="low">Low</option>
+                                <option value="mid">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div className={`ml-4 rounded-full w-3 h-3 border border-solid border-gray-800
+                        ${
+                            tagValue === "none"
+                            ? "bg-white"
+                            : tagValue === "low"
+                            ? "bg-green-500"
+                            : tagValue === "mid"
+                            ? "bg-amber-500"
+                            : tagValue === "high"
+                            ? "bg-red-500"
+                            : "bg-white"
+                        }`}></div>
+                    </div>
 				</div>
 				<button
 					className="absolute px-4 py-1 bottom-6 [box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition rounded-lg"
