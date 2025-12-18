@@ -41,6 +41,10 @@ interface ModalProps {
 	onClose: () => void;
 }
 
+interface WelcomeModalProps {
+    onClose: () => void;
+}
+
 interface HeaderProps {
 	onToggle: () => void;
 	value: Tag;

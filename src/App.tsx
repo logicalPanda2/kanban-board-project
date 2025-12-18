@@ -3,10 +3,13 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Column from "./components/Column";
 import TodoModal from "./components/TodoModal";
 import Header from "./components/Header";
+import WelcomeModal from "./components/WelcomeModal";
 import { useTodos } from "./hooks/useTodos";
 import { useModalStates } from "./hooks/useModalStates";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function App() {
+    const [hasVisited, setHasVisited] = useLocalStorage<boolean>("hasVisited", false);
 	const { todos, setTodos, createTodo, editTodo, deleteTodo } = useTodos("todos");
     const {
         isModalOpen,
@@ -89,6 +92,9 @@ export default function App() {
 					onError={setError}
 				/>
 			)}
+            {!hasVisited && (
+                <WelcomeModal onClose={() => setHasVisited(true)}/>
+            )}
 		</>
 	);
 }
