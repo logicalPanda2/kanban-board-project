@@ -34,7 +34,7 @@ export default function Column({
 			ref={(node) => {
 				dropRef(node);
 			}}
-			className="w-1/3 flex flex-col p-4 gap-4 bg-neutral-100"
+			className="md:w-1/3 w-full flex flex-col p-4 gap-4 bg-neutral-100"
 			style={{ backgroundColor: isOver ? "#f0f0f0" : undefined }}
 		>
 			<p className="text-2xl">{title}</p>
