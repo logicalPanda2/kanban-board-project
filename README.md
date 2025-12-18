@@ -8,9 +8,8 @@ A simple task tracker. Responsiveness + other features underway. Check out <a hr
 2. [Usage](#usage)
 3. [Project Structure](#project-structure)
 4. [Tech Stack](#tech-stack)
-5. [Future Plans](#future-plans)
-6. [Author](#author)
-7. [License](#license)
+5. [Author](#author)
+6. [License](#license)
 
 ## Installation
 Copy and paste the commands below into a shell to install and set up the project (change &lt;target-directory&gt; to your actual target folder):
@@ -38,18 +37,6 @@ Type in `npm run dev` and press `o + Enter` to launch.
 - Tailwind CSS
 - TypeScript
 - and HTML5, CSS, JS
-
-## Future Plans
-Some backstory: this project was made because I lost a bet. It was made in only two days! <br>
-In the end, it turned out quite nice, so I made it a proper repository. <br>
-As of now, several features are still being actively developed:
-1. Responsiveness, mobile-first
-2. Dark mode
-3. Welcome screen
-4. Routing integration and other code quality improvements
-5. Other QoL improvements, such as: change task status with keyboard, `CLEAR ALL` button, details input improvement, tag visual indicator on modal etc.
-
-Expect these features in the very near future.
 
 ## Author
 Marcelino Romeo @logicalPanda2 (https://github.com/logicalPanda2)
