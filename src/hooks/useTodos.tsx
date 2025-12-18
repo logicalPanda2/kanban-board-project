@@ -60,13 +60,30 @@ export function useTodos(localStorageKey: string) {
         if(todo.status === "todo" && key === "left") return;
         if(todo.status === "completed" && key === "right") return;
 
+        let newStatus: Status = todo.status;
         if(key === "left") {
-            if(todo.status === "wip") todo.status = "todo";
-            if(todo.status === "completed") todo.status = "wip";
+            if(todo.status === "wip") newStatus = "todo";
+            if(todo.status === "completed") newStatus = "wip";
         } else {
-            if(todo.status === "todo") todo.status = "wip";
-            if(todo.status === "wip") todo.status = "completed";
+            if(todo.status === "todo") newStatus = "wip";
+            if(todo.status === "wip") newStatus = "completed";
         }
+        
+        const oldTodo = todos.find((t) => t.id === todo.id);
+
+		if (!oldTodo) return;
+
+        const index = todos.indexOf(oldTodo);
+
+		const newTodo = {
+			...oldTodo,
+			status: newStatus,
+		};
+
+		const copy = todos;
+        copy[index] = newTodo;
+
+        setTodos([...copy]); // copy is destructured because of a react quirk; it does not properly trigger a rerender directly.
     }
 
 	return {
