@@ -7,7 +7,6 @@ export default function Column({
 	todos,
 	status,
 	onView,
-	onDelete,
 	onSetTodos,
     onChangeStatus,
 }: ColumnProps) {
@@ -45,7 +44,6 @@ export default function Column({
 						key={todo.id}
 						todo={todo}
 						onTaskView={onView}
-						onTaskDelete={onDelete}
                         onTaskChangeStatus={onChangeStatus}
 					/>
 				))

@@ -50,7 +50,6 @@ export default function App() {
 								(todo) => todo.status === "todo",
 							)}
 							onView={viewDetails}
-							onDelete={deleteTodo}
 							onSetTodos={setTodos}
                             onChangeStatus={changeTodoStatus}
 						/>
@@ -61,7 +60,6 @@ export default function App() {
 								(todo) => todo.status === "wip",
 							)}
 							onView={viewDetails}
-							onDelete={deleteTodo}
 							onSetTodos={setTodos}
                             onChangeStatus={changeTodoStatus}
 						/>
@@ -72,7 +70,6 @@ export default function App() {
 								(todo) => todo.status === "completed",
 							)}
 							onView={viewDetails}
-							onDelete={deleteTodo}
 							onSetTodos={setTodos}
                             onChangeStatus={changeTodoStatus}
 						/>
@@ -93,6 +90,7 @@ export default function App() {
 					onClose={closeModal}
 					hasError={hasError}
 					onError={setError}
+                    onTaskDelete={deleteTodo}
 				/>
 			)}
             {!hasVisited && (

@@ -25,6 +25,7 @@ export default function TodoModal({
 	onEdit,
 	onCreate,
 	onClose,
+    onTaskDelete,
 }: ModalProps) {
     const overlayRef = useRef<HTMLDivElement | null>(null);
     const modalRef = useRef<HTMLDivElement | null>(null);
@@ -140,6 +141,17 @@ export default function TodoModal({
 				<div className="absolute top-5 right-6 hover:bg-gray-300 focus-within:bg-gray-300 transition rounded-full focus-within:outline-0">
                     <button onClick={onClose} className="px-3 py-1 transform-[scaleX(1.4)] font-semibold focus-visible:outline-0" aria-label="close">X</button>
                 </div>
+                {editedId && <div className="absolute bottom-5 right-6">
+                    <button
+                        onClick={() => {
+                            onTaskDelete(editedId);
+                            onClose();
+                        }}
+                        className="text-red-500 hover:text-red-700 focus-visible:text-red-700 focus-visible:bg-red-200 hover:bg-red-200 px-2 py-1 rounded-lg focus-visible:outline-0 transition"
+                    >
+                        Delete
+                    </button>
+                </div>}
 			</div>
 		</div>
 	);
