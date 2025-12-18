@@ -38,9 +38,9 @@ export default function Header({ onToggle, value, onChange }: HeaderProps) {
 							className="focus-visible:outline-0"
 						>
 							<option value="none" className="text-black">None</option>
-							<option value="low" className="text-black">Low Priority</option>
-							<option value="mid" className="text-black">Medium Priority</option>
-							<option value="high" className="text-black">High Priority</option>
+							<option value="low" className="text-black">Low</option>
+							<option value="mid" className="text-black">Medium</option>
+							<option value="high" className="text-black">High</option>
 						</select>
 					</div>
 				</div>
