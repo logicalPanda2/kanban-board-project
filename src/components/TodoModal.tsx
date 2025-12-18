@@ -98,9 +98,9 @@ export default function TodoModal({
 							}}
 						>
 							<option value="none">None</option>
-							<option value="low">Low Priority</option>
-							<option value="mid">Medium Priority</option>
-							<option value="high">High Priority</option>
+							<option value="low">Low</option>
+							<option value="mid">Medium</option>
+							<option value="high">High</option>
 						</select>
 					</div>
 				</div>
