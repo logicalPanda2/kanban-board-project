@@ -1,7 +1,7 @@
 export default function WelcomeModal({onClose}: WelcomeModalProps) {
     return (
         <div className="fixed inset-0 z-20 bg-neutral-600/70 flex items-center justify-center transition">
-			<div className="w-lg rounded-2xl px-6 py-4 bg-gray-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white] selection:bg-green-800 selection:text-neutral-100 [transition:top_250ms_ease] top-0 mx-4">
+			<div className="w-lg rounded-2xl px-6 py-4 bg-gray-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white] selection:bg-green-800 selection:text-neutral-100 [transition:top_250ms_ease] top-0 mx-4 pb-6">
                 <p className="text-3xl text-center">Welcome!</p>
                 <ul className="list-disc mx-4 mt-4">
                     <li className="mb-2">Make and track your tasks easily with this kanban-style task tracker.</li>
