@@ -56,11 +56,11 @@ export default function TodoCard({
                 </div>
 			</div>
             <div className="flex flex-row flex-nowrap justify-center items-center gap-8">
-                <button onClick={() => onTaskChangeStatus(todo, "left")} className="font-semibold relative px-2.5 pb-1.5 rounded-full hover:bg-gray-300 focus-visible:bg-gray-300 focus-visible:outline-0 transition transform-[scale(0.8)]">
+                <button onClick={() => onTaskChangeStatus(todo, "left")} className="font-semibold relative px-2.5 pb-1.5 rounded-full hover:bg-gray-300 focus-visible:bg-gray-300 focus-visible:outline-0 transition md:transform-[scale(0.8)] transform-[scale(0.8)_rotateZ(90deg)]">
                     <span className="inline-block transform-[rotateZ(-135deg)]">I</span>
                     <span className="inline-block transform-[rotateZ(-45deg)] relative -left-1 top-1.5">l</span>
                 </button>
-                <button onClick={() => onTaskChangeStatus(todo, "right")} className="font-semibold relative px-2.5 pb-1.5 rounded-full hover:bg-gray-300 focus-visible:bg-gray-300 focus-visible:outline-0 transition transform-[scale(0.8)]">
+                <button onClick={() => onTaskChangeStatus(todo, "right")} className="font-semibold relative px-2.5 pb-1.5 rounded-full hover:bg-gray-300 focus-visible:bg-gray-300 focus-visible:outline-0 transition md:transform-[scale(0.8)] transform-[scale(0.8)_rotateZ(90deg)]">
                     <span className="inline-block transform-[rotateZ(135deg)] relative left-1">I</span>
                     <span className="inline-block transform-[rotateZ(45deg)] relative top-1.5">l</span>
                 </button>
