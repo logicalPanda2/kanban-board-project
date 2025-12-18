@@ -17,9 +17,9 @@ export default function Header({ onToggle, value, onChange }: HeaderProps) {
 			<div className="flex flex-col md:flex-row flex-nowrap items-center">
 				<button
 					onClick={onToggle}
-					className="mb-2 md:Mb-0 py-2 px-4 rounded-lg hover:bg-green-700/75 [box-shadow:0_1px_2px_black] active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 font-normal bg-green-800/80 transition focus-visible:bg-green-700/75 focus-visible:outline-0"
+					className="mb-4 md:mb-0 py-2 px-4 rounded-lg hover:bg-green-700/75 [box-shadow:0_1px_2px_black] active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 font-normal bg-green-800/80 transition focus-visible:bg-green-700/75 focus-visible:outline-0"
 				>
-					Create new task
+					New task
 				</button>
 				<div className="flex flex-col md:ml-12">
 					<label htmlFor="filter" className="mb-1 font-medium">
