@@ -56,11 +56,25 @@ export function useTodos(localStorageKey: string) {
 		setTodos(newTodos);
 	};
 
+    const changeTodoStatus = (todo: Todo, key: "left" | "right"): void => {
+        if(todo.status === "todo" && key === "left") return;
+        if(todo.status === "completed" && key === "right") return;
+
+        if(key === "left") {
+            if(todo.status === "wip") todo.status = "todo";
+            if(todo.status === "completed") todo.status = "wip";
+        } else {
+            if(todo.status === "todo") todo.status = "wip";
+            if(todo.status === "wip") todo.status = "completed";
+        }
+    }
+
 	return {
 		todos,
 		setTodos,
 		createTodo,
 		editTodo,
 		deleteTodo,
+        changeTodoStatus,
 	};
 }
