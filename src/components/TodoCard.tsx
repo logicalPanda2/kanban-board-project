@@ -5,6 +5,7 @@ export default function TodoCard({
 	todo,
 	onTaskView,
 	onTaskDelete,
+    onTaskChangeStatus,
 }: TodoCardProps) {
 	const [{ isDragging }, dragRef] = useDrag(() => ({
 		type: ItemTypes.TODO,
@@ -53,6 +54,8 @@ export default function TodoCard({
                         : "bg-white"
                     }`}>    
                 </div>
+                <button onClick={() => onTaskChangeStatus(todo, "left")}>L</button>
+                <button onClick={() => onTaskChangeStatus(todo, "right")}>R</button>
 			</div>
 		</div>
 	);
