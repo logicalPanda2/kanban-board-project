@@ -40,7 +40,7 @@ export default function TodoCard({
 				>
 					Delete
 				</button>
-                <div className={`absolute w-3 h-3 rounded-full top-5 right-6 border border-solid border-gray-800
+                <div className={`absolute w-3 h-3 rounded-full top-2 right-2 border border-solid border-gray-800
                     ${
                         todo.tag === "none"
                         ? "bg-white"
