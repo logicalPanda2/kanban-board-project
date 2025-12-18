@@ -13,15 +13,15 @@ function isTag(value: string): value is Tag {
 export default function Header({ onToggle, value, onChange }: HeaderProps) {
 	return (
 		<header className="flex flex-row flex-nowrap items-center py-4 px-6 sticky top-0 z-10 justify-between bg-green-800/95 text-white selection:text-green-800 selection:bg-neutral-100 backdrop-blur-xs">
-			<h1 className="text-4xl font-semibold">Kanban Board</h1>
-			<div className="flex flex-row flex-nowrap items-center">
+			<h1 className="text-4xl font-semibold mr-8">Kanban Board</h1>
+			<div className="flex flex-col md:flex-row flex-nowrap items-center">
 				<button
 					onClick={onToggle}
-					className="mx-4 py-2 px-4 rounded-lg hover:bg-green-700/75 [box-shadow:0_1px_2px_black] active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 font-normal bg-green-800/80 transition focus-visible:bg-green-700/75 focus-visible:outline-0"
+					className="mb-2 md:Mb-0 py-2 px-4 rounded-lg hover:bg-green-700/75 [box-shadow:0_1px_2px_black] active:bg-green-900/75 active:[box-shadow:inset_0_0_2px_0_black] active:text-gray-200 font-normal bg-green-800/80 transition focus-visible:bg-green-700/75 focus-visible:outline-0"
 				>
 					Create new task
 				</button>
-				<div className="flex flex-col ml-8">
+				<div className="flex flex-col md:ml-12">
 					<label htmlFor="filter" className="mb-1 font-medium">
 						Filter
 					</label>
