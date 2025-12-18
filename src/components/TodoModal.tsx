@@ -48,7 +48,7 @@ export default function TodoModal({
 
 	return (
 		<div className="fixed inset-0 z-20 bg-neutral-600/70 flex items-center justify-center transition" ref={overlayRef}>
-			<div className="w-lg h-96 rounded-2xl px-6 py-4 bg-gray-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white] selection:bg-green-800 selection:text-neutral-100 [transition:top_250ms_ease] top-0 mx-4" ref={modalRef}>
+			<div className="w-lg rounded-2xl px-6 py-4 bg-gray-100 flex flex-col relative [box-shadow:0_1px_2px_black,inset_0_1px_2px_white] selection:bg-green-800 selection:text-neutral-100 [transition:top_250ms_ease] top-0 mx-4" ref={modalRef}>
 				<p className="text-3xl mb-4">
 					{editedId ? "Edit" : "New"}
 				</p>
@@ -72,20 +72,20 @@ export default function TodoModal({
 					<label htmlFor="detailsField" className="text-xl mb-1">
 						Details
 					</label>
-					<input
-						type="text"
+					<textarea
 						name="details"
 						id="detailsField"
-						className="[box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition px-2 py-1 rounded-lg mb-2"
+						className="[box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition px-2 py-1 rounded-lg mb-2 resize-none h-32 [scrollbar-width:thin]"
 						value={detailsValue}
 						onChange={(e) => {
 							onDetailsChange(e.target.value);
 						}}
-					/>
+					>
+                    </textarea>
 					<label htmlFor="tagField" className="text-xl mb-1">
 						Tag
 					</label>
-                    <div className="flex flex-row flex-nowrap items-center">
+                    <div className="flex flex-row flex-nowrap items-center mb-6">
                        <div className="px-2 py-1 [box-shadow:0_1px_2px_black] focus-within:bg-white hover:bg-white focus-within:outline-0 bg-neutral-100/50 transition rounded-lg w-9/10">
                             <select
                                 name="tag"
@@ -119,7 +119,7 @@ export default function TodoModal({
                     </div>
 				</div>
 				<button
-					className="absolute px-4 py-1 bottom-6 [box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition rounded-lg"
+					className="px-4 py-1 w-24 [box-shadow:0_1px_2px_black] focus-visible:bg-white hover:bg-white focus-visible:outline-0 bg-neutral-100/50 transition rounded-lg"
 					onClick={() => {
 						editedId
 							? !onEdit(
