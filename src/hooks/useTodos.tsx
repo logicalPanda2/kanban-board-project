@@ -45,7 +45,7 @@ export function useTodos(localStorageKey: string) {
 		const copy = todos;
         copy[index] = newTodo;
 
-		setTodos(copy);
+		setTodos([...copy]); // check ln 86
 
 		return true;
 	};
