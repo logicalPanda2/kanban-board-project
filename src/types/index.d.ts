@@ -40,6 +40,7 @@ interface ModalProps {
 	onCreate: (title: string, details: string, tag: Tag) => boolean;
 	onClose: () => void;
     onTaskDelete: (id: string) => void;
+    id: string;
 }
 
 interface WelcomeModalProps {

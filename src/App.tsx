@@ -7,6 +7,7 @@ import WelcomeModal from "./components/WelcomeModal";
 import { useTodos } from "./hooks/useTodos";
 import { useModalStates } from "./hooks/useModalStates";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useEffect } from "react";
 
 export default function App() {
     const [hasVisited, setHasVisited] = useLocalStorage<boolean>("hasVisited", false);
@@ -24,19 +25,31 @@ export default function App() {
         setTagValue,
         filterValue,
         setFilterValue,
-        toggleModal,
         closeModal,
+        openModal,
         viewDetails
     } = useModalStates();
     const filteredTodos =
         filterValue !== "none"
             ? todos.filter((todo) => todo.tag === filterValue)
             : todos;
+    const modalId = "1";
+
+    useEffect(() => {
+        const root = document.getElementById("root");
+		if (!root) throw new Error("root element not found");
+
+		[...root.children].forEach((child) => {
+            if(child.id === "1") return;
+
+            child.toggleAttribute("inert");
+        });
+    }, [isModalOpen]);
 
 	return (
 		<>
 			<Header
-				onToggle={toggleModal}
+				onToggle={openModal}
 				value={filterValue}
 				onChange={setFilterValue}
 			/>
@@ -91,6 +104,7 @@ export default function App() {
 					hasError={hasError}
 					onError={setError}
                     onTaskDelete={deleteTodo}
+                    id={modalId}
 				/>
 			)}
             {!hasVisited && (

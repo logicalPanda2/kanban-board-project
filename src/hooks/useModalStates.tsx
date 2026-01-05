@@ -9,18 +9,8 @@ export function useModalStates() {
     const [tagValue, setTagValue] = useState<Tag>("none");
     const [filterValue, setFilterValue] = useState<Tag>("none");
 
-    const root = document.getElementById("root");
-
-	const toggleModal = (): void => {
-		if (!root) throw new Error("root element not found");
-
-		[...root.children].forEach((child) => child.toggleAttribute("inert"));
-        const newState = !isModalOpen;
-		setModalOpen(newState);
-	};
-
 	const closeModal = (): void => {
-		toggleModal();
+		setModalOpen(false);
 		setTitleValue("");
 		setDetailsValue("");
 		setTagValue("none");
@@ -28,12 +18,21 @@ export function useModalStates() {
 		setError(false);
 	};
 
+    const openModal = (): void => {
+        setTitleValue("");
+		setDetailsValue("");
+		setTagValue("none");
+		setEditedId("");
+		setError(false);
+        setModalOpen(true);
+    }
+
 	const viewDetails = (todo: Todo): void => {
 		setTitleValue(todo.title);
 		setDetailsValue(todo.details);
 		setTagValue(todo.tag);
 		setEditedId(todo.id);
-		toggleModal();
+		setModalOpen(true);
 	};
 
     return {
@@ -49,8 +48,8 @@ export function useModalStates() {
         setTagValue,
         filterValue,
         setFilterValue,
-        toggleModal,
         closeModal,
+        openModal,
         viewDetails
     };
 }
