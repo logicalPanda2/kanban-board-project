@@ -33,8 +33,6 @@ export function useTodos(localStorageKey: string) {
 
 		if (!oldTodo) return false;
 
-        const index = todos.indexOf(oldTodo);
-
 		const newTodo = {
 			...oldTodo,
 			title: title,
@@ -42,10 +40,13 @@ export function useTodos(localStorageKey: string) {
 			tag: tag,
 		};
 
-		const copy = todos;
-        copy[index] = newTodo;
-
-		setTodos([...copy]); // check ln 86
+		setTodos(
+            todos.map((todo) => (
+                todo.id === newTodo.id ? 
+                newTodo :
+                todo
+            )
+        ));
 
 		return true;
 	};
@@ -73,17 +74,18 @@ export function useTodos(localStorageKey: string) {
 
 		if (!oldTodo) return;
 
-        const index = todos.indexOf(oldTodo);
-
-		const newTodo = {
+        const newTodo = {
 			...oldTodo,
 			status: newStatus,
 		};
 
-		const copy = todos;
-        copy[index] = newTodo;
-
-        setTodos([...copy]); // copy is destructured because of a react quirk; it does not properly trigger a rerender directly.
+        setTodos(
+            todos.map((todo) => (
+                todo.id === newTodo.id ? 
+                newTodo :
+                todo
+            )
+        ));
     }
 
 	return {
