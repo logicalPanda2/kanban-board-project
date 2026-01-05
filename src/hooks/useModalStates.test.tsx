@@ -8,13 +8,16 @@ describe("useModalStates hook", () => {
             useModalStates()
         ));
 
-        result.current.openModal();
-
+        act(() => {
+            result.current.openModal();
+        });
+        
         expect(result.current.titleValue).toBe("");
         expect(result.current.detailsValue).toBe("");
         expect(result.current.tagValue).toBe("none");
         expect(result.current.editedId).toBe("");
         expect(result.current.hasError).toBe(false);
+        expect(result.current.isModalOpen).toBe(true);
     });
 
     it("resets all states when closing the modal", () => {
@@ -22,13 +25,16 @@ describe("useModalStates hook", () => {
             useModalStates()
         ));
 
-        result.current.closeModal();
+        act(() => {
+            result.current.closeModal();
+        });
 
         expect(result.current.titleValue).toBe("");
         expect(result.current.detailsValue).toBe("");
         expect(result.current.tagValue).toBe("none");
         expect(result.current.editedId).toBe("");
         expect(result.current.hasError).toBe(false);
+        expect(result.current.isModalOpen).toBe(false);
     });
 
     it("will apply necessary states when viewing details", () => {
@@ -52,5 +58,6 @@ describe("useModalStates hook", () => {
         expect(result.current.detailsValue).toBe(mockTodo.details);
         expect(result.current.tagValue).toBe(mockTodo.tag);
         expect(result.current.editedId).toBe(mockTodo.id);
+        expect(result.current.isModalOpen).toBe(true);
     });
 });
