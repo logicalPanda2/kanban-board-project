@@ -3,11 +3,6 @@ import { useTodos } from "./useTodos";
 import { act } from "react";
 
 describe("useTodos hook", () => {
-    // NOT: test if it creates an empty array
-    // NOT: test if it returns existing todos
-    // 8: check if delete todo properly deletes a todo 
-    // 9 - 12: check all 4 branches in changeTodoStatus
-
     beforeEach(() => {
         localStorage.removeItem("todos");
     });
@@ -130,5 +125,93 @@ describe("useTodos hook", () => {
 
         expect(newTodos).toHaveLength(1);
         expect(newTodos[0].title).toBe("task 2");
+    });
+
+    it("changes the status to 'wip' provided a right key and previous status 'todo'", () => {
+        const {result} = renderHook(() => (
+            useTodos("todos")
+        ));
+
+        act(() => {
+            result.current.createTodo("todo", "no details", "none");
+        })
+
+        expect(result.current.todos[0].status).toBe("todo");
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "right");
+        });
+
+        expect(result.current.todos[0].status).toBe("wip");
+    });
+
+    it("changes the status to 'completed' provided a right key and previous status 'wip'", () => {
+        const {result} = renderHook(() => (
+            useTodos("todos")
+        ));
+
+        act(() => {
+            result.current.createTodo("todo", "no details", "none");
+        })
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "right");
+        });
+
+        expect(result.current.todos[0].status).toBe("wip");
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "right");
+        });
+
+        expect(result.current.todos[0].status).toBe("completed");
+    });
+
+    it("changes the status to 'todo' provided a left key and previous status 'wip'", () => {
+        const {result} = renderHook(() => (
+            useTodos("todos")
+        ));
+
+        act(() => {
+            result.current.createTodo("todo", "no details", "none");
+        })
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "right");
+        });
+
+        expect(result.current.todos[0].status).toBe("wip");
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "left");
+        });
+
+        expect(result.current.todos[0].status).toBe("todo");
+    });
+
+    it("changes the status to 'wip' provided a left key and previous status 'completed'", () => {
+        const {result} = renderHook(() => (
+            useTodos("todos")
+        ));
+
+        act(() => {
+            result.current.createTodo("todo", "no details", "none");
+        })
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "right");
+        });
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "right");
+        });
+
+        expect(result.current.todos[0].status).toBe("completed");
+
+        act(() => {
+            result.current.changeTodoStatus(result.current.todos[0], "left");
+        });
+
+        expect(result.current.todos[0].status).toBe("wip");
     });
 });
