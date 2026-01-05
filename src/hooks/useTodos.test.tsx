@@ -5,10 +5,12 @@ import { act } from "react";
 describe("useTodos hook", () => {
     // NOT: test if it creates an empty array
     // NOT: test if it returns existing todos
-    // 4: check if edit todo throws without a title
-    // 5: check if edit todo throws when it doesn't find oldTodo (meaning: the targetId provided doesn't refer to any existing Todos)
     // 8: check if delete todo properly deletes a todo 
     // 9 - 12: check all 4 branches in changeTodoStatus
+
+    beforeEach(() => {
+        localStorage.removeItem("todos");
+    });
 
     it("returns true on successful todo creation", () => {
         const {result} = renderHook(() => (
@@ -24,6 +26,8 @@ describe("useTodos hook", () => {
         const {result} = renderHook(() => (
             useTodos("todos")
         ));
+
+        console.log(result.current.todos);
 
         const returnValue = result.current.createTodo("", "details", "low");
 
@@ -94,9 +98,37 @@ describe("useTodos hook", () => {
         act(() => {
             result.current.createTodo("old title", "details", "high");
         });
-        
+
         const returnValue = result.current.editTodo("new title", "new details", "mid", "never-id");
 
         expect(returnValue).toBe(false);
+    });
+
+    it("deletes a todo", () => {
+        const {result} = renderHook(() => (
+            useTodos("todos")
+        ));
+
+        act(() => {
+            result.current.createTodo("task 1", "no details", "high");
+        });
+
+        act(() => {
+            result.current.createTodo("task 2", "no details also", "mid");
+        })
+
+        const todos = result.current.todos;
+        const targetId = todos[0].id;
+
+        expect(todos).toHaveLength(2);
+
+        act(() => {
+            result.current.deleteTodo(targetId);
+        });
+
+        const newTodos = result.current.todos;
+
+        expect(newTodos).toHaveLength(1);
+        expect(newTodos[0].title).toBe("task 2");
     });
 });
