@@ -12,7 +12,11 @@ describe("useTodos hook", () => {
             useTodos("todos")
         ));
 
-        const returnValue = result.current.createTodo("title", "details", "low");
+        let returnValue;
+
+        act(() => {
+            returnValue = result.current.createTodo("title", "details", "low");
+        })
 
         expect(returnValue).toBe(true);
     });
@@ -22,9 +26,11 @@ describe("useTodos hook", () => {
             useTodos("todos")
         ));
 
-        console.log(result.current.todos);
+        let returnValue;
 
-        const returnValue = result.current.createTodo("", "details", "low");
+        act(() => {
+            returnValue = result.current.createTodo("", "details", "low");
+        })
 
         expect(returnValue).toBe(false);
     });
@@ -40,7 +46,11 @@ describe("useTodos hook", () => {
         
         const todos = result.current.todos;
 
-        const returnValue = result.current.editTodo("new title", "new details", "mid", todos[0].id);
+        let returnValue;
+        
+        act(() => {
+            returnValue = result.current.editTodo("new title", "new details", "mid", todos[0].id);
+        });
 
         expect(returnValue).toBe(true);
     });
