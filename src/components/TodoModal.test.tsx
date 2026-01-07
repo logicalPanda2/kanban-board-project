@@ -12,4 +12,6 @@ describe("TodoModal", () => {
     it("sets an error when given a false return value");
     it("displays an error");
     it("displays the 'delete' button if editing");
+    it("closes the modal");
+    it("resets errors upon closing");
 })
