@@ -32,19 +32,6 @@ export default function TodoCard({
 				>
 					View details...
 				</button>
-                <div className={`absolute w-3 h-3 rounded-full top-2 right-2 border border-solid border-gray-800
-                    ${
-                        todo.tag === "none"
-                        ? "bg-white"
-                        : todo.tag === "low"
-                        ? "bg-green-500"
-                        : todo.tag === "mid"
-                        ? "bg-amber-500"
-                        : todo.tag === "high"
-                        ? "bg-red-500"
-                        : "bg-white"
-                    }`}>    
-                </div>
 			</div>
             <div className="flex flex-row flex-nowrap justify-center items-center gap-8">
                 <button onClick={() => onTaskChangeStatus(todo, "left")} className="font-semibold relative px-2.5 pb-1.5 rounded-full hover:bg-gray-300 focus-visible:bg-gray-300 focus-visible:outline-0 transition md:transform-[scale(0.8)] transform-[scale(0.8)_rotateZ(90deg)]" aria-label="move left">
@@ -55,6 +42,19 @@ export default function TodoCard({
                     <span className="inline-block transform-[rotateZ(135deg)] relative left-1" aria-hidden="true">I</span>
                     <span className="inline-block transform-[rotateZ(45deg)] relative top-1.5" aria-hidden="true">I</span>
                 </button>
+            </div>
+            <div className={`absolute w-3 h-3 rounded-full top-2 right-2 border border-solid border-gray-800
+                ${
+                    todo.tag === "none"
+                    ? "bg-white"
+                    : todo.tag === "low"
+                    ? "bg-green-500"
+                    : todo.tag === "mid"
+                    ? "bg-amber-500"
+                    : todo.tag === "high"
+                    ? "bg-red-500"
+                    : "bg-white"
+                }`}>    
             </div>
 		</div>
 	);
