@@ -34,17 +34,18 @@ export default function App() {
             ? todos.filter((todo) => todo.tag === filterValue)
             : todos;
     const modalId = "1";
+    const welcomeModalId = "2";
 
     useEffect(() => {
         const root = document.getElementById("root");
 		if (!root) throw new Error("root element not found");
 
 		[...root.children].forEach((child) => {
-            if(child.id === "1") return;
+            if(child.id === "1" || child.id === "2") return;
 
             child.toggleAttribute("inert");
         });
-    }, [isModalOpen]);
+    }, [isModalOpen, hasVisited]);
 
 	return (
 		<>
@@ -108,7 +109,7 @@ export default function App() {
 				/>
 			)}
             {!hasVisited && (
-                <WelcomeModal onClose={() => setHasVisited(true)}/>
+                <WelcomeModal onClose={() => setHasVisited(true)} id={welcomeModalId}/>
             )}
 		</>
 	);

@@ -45,6 +45,7 @@ interface ModalProps {
 
 interface WelcomeModalProps {
     onClose: () => void;
+    id: string;
 }
 
 interface HeaderProps {
